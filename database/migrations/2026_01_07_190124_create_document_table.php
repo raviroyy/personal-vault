@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('document', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->string('original_name');
+            $table->string('stored_name')->unique();
+            $table->string('file_path');
+            $table->string("file_type");
+            $table->boolean('is_encrypted')->default(false);
             $table->timestamps();
         });
     }

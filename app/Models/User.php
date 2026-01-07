@@ -64,4 +64,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //relationships
+    public function profile()
+    {
+        return $this->hasOne(Profile::class); // one user has one profile
+    }
+    public function documents()
+    {
+        return $this->hasMany(Document::class); // one user has many documents
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class); // one user has many posts
+    }
+  
+
 }
