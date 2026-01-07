@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('post_media', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->foreignId('posts_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->string('file_path');  //path to image
             $table->string('file_type');  //image type (e.g., jpg, png)
