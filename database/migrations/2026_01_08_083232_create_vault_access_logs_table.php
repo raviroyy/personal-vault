@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('document', function (Blueprint $table) {
+        Schema::create('vault_access_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->string('original_name');
-            $table->string('stored_name')->unique();
-            $table->string('file_path');
-            $table->string("file_type");
-            $table->boolean('is_encrypted')->default(false);
+            $table->string('otp');
+            $table->timestamp('expires_at');
+            $table->boolean('is_verified')->default(false);
             $table->timestamps();
+
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('document');
+        Schema::dropIfExists('vault_access_logs');
     }
 };
