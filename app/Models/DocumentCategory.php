@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class DocumentCategory extends Model
 {
-    //
+    use HasFactory;
+    protected $fillable = [
+        "name",
+    ];
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class, "category_id");
+    }
 }
